@@ -2,6 +2,7 @@ import { useEffect } from "react";
 import { supabase, useAuthStore } from "@/lib/supabase";
 
 import Login from "@/components/Login";
+import Dashboard from "@/pages/Dashboard";
 
 function App() {
   const { user, setUser } = useAuthStore();
@@ -22,9 +23,7 @@ function App() {
     };
   }, [setUser]);
 
-  if (!user) return <Login />;
-
-  return <div className="p-4">Welcome, {user.email}</div>;
+  return user ? <Dashboard /> : <Login />;
 }
 
 export default App;
